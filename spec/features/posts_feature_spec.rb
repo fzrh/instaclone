@@ -28,5 +28,9 @@ describe 'Posts' do
       visit '/posts'
       expect(page).to have_content 'First post'
     end
+    
+    it 'can display post with image' do
+
+    end
   end
 end
