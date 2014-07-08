@@ -38,6 +38,7 @@ describe 'Posts' do
       click_button 'Post it!'
       expect(current_path).to eq posts_path
       expect(page).to have_content 'My first post'
+      expect(page).not_to have_css 'img.uploaded-pic'
     end
 
     it 'can add a photo to post' do
