@@ -19,6 +19,16 @@ describe 'Posts' do
       expect(current_path).to eq '/posts/new'
       expect(page).to have_content 'Create a post'
     end
+
+    it 'adds a new post without an image' do
+      visit '/posts/new'
+      fill_in 'Title', with: 'First post'
+      fill_in 'Description', with: 'My first post'
+      # attach_file 'Image', Rails.root.join('spec/images/bohey_dulang.jpg')
+      click_button 'Post it!'
+      expect(current_path).to eq posts_path
+      expect(page).to have_content 'Errors'
+    end
   end
 
   context 'with images' do
@@ -29,16 +39,6 @@ describe 'Posts' do
     it 'displays the posts on homepage' do
       visit '/posts'
       expect(page).to have_css 'img.uploaded-pic'
-    end
-
-    it 'adds a new post without image' do
-      visit '/posts/new'
-      fill_in 'Title', with: 'First post'
-      fill_in 'Description', with: 'My first post'
-      # attach_file 'Image', Rails.root.join('spec/images/bohey_dulang.jpg')
-      click_button 'Post it!'
-      expect(current_path).to eq posts_path
-      expect(page).to have_content 'Errors'
     end
 
     it 'can add a photo to post' do
