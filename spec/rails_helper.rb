@@ -22,6 +22,8 @@ AWS.stub!
 AWS.config(:access_key_id => "TESTKEY", :secret_access_key => "TESTSECRET")
 
 RSpec.configure do |config|
+  config.include Warden::Test::Helpers
+  Warden.test_mode!
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
