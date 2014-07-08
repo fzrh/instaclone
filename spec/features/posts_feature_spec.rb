@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Posts' do
   context 'with no posts' do
-    it 'displays no posts' do
+    it 'displays no posts on homepage' do
       visit '/posts'
       expect(page).to have_content 'No posts yet'
     end
@@ -21,24 +21,24 @@ describe 'Posts' do
     end
   end
 
-  context 'with posts' do
-    before { Post.create(title: 'First post', description: 'My first post') }
-
-    it 'displays the posts' do
-      visit '/posts'
-      expect(page).to have_content 'First post'
-    end
-  end
-
   context 'with images' do
-    it 'adds a new post' do
+    before do
+      Post.create title: 'First post', description: 'My first post', image: File.new(Rails.root + 'spec/images/bohey_dulang.jpg')
+    end
+
+    it 'displays the posts on homepage' do
+      visit '/posts'
+      expect(page).to have_css 'img.uploaded-pic'
+    end
+
+    it 'adds a new post without image' do
       visit '/posts/new'
       fill_in 'Title', with: 'First post'
       fill_in 'Description', with: 'My first post'
+      # attach_file 'Image', Rails.root.join('spec/images/bohey_dulang.jpg')
       click_button 'Post it!'
       expect(current_path).to eq posts_path
-      expect(page).to have_content 'My first post'
-      expect(page).not_to have_css 'img.uploaded-pic'
+      expect(page).to have_content 'Errors'
     end
 
     it 'can add a photo to post' do
