@@ -16,7 +16,8 @@ end
 describe 'Creating posts' do
   context 'when logged out' do
     before do
-      Post.create title: 'First post', description: 'My first post', image: File.new(Rails.root + 'spec/images/bohey_dulang.jpg')
+      alex = User.create email: 'alex@alex.com', password: '12345678', password_confirmation: '12345678'
+      alex.posts.create title: 'First post', description: 'My first post', image: File.new(Rails.root + 'spec/images/bohey_dulang.jpg')
     end
 
     it 'displays the posts on homepage' do
@@ -39,7 +40,18 @@ describe 'Creating posts' do
       # Post.create title: 'First post', description: 'My first post', image: File.new(Rails.root + 'spec/images/bohey_dulang.jpg')
     end
 
-    it 'adds a new post without an image' do
+    it 'can add a photo to a post' do
+      visit '/posts/new'
+      fill_in 'Title', with: 'First post'
+      fill_in 'Description', with: 'My first post' 
+      attach_file 'Image', Rails.root.join('spec/images/bohey_dulang.jpg')
+      click_button 'Post it!'
+      expect(current_path).to eq posts_path
+      expect(page).to have_content 'Posted by: alex@alex.com'
+      expect(page).to have_css 'img.uploaded-pic'
+    end
+
+    it 'cannot adds a new post without an image' do
       visit '/posts/new'
       fill_in 'Title', with: 'First post'
       fill_in 'Description', with: 'My first post'
@@ -48,14 +60,5 @@ describe 'Creating posts' do
       expect(page).to have_content 'Errors'
     end
 
-    it 'can add a photo to post' do
-      visit '/posts/new'
-      fill_in 'Title', with: 'First post'
-      fill_in 'Description', with: 'My first post' 
-      attach_file 'Image', Rails.root.join('spec/images/bohey_dulang.jpg')
-      click_button 'Post it!'
-      expect(current_path).to eq posts_path
-      expect(page).to have_css 'img.uploaded-pic'
-    end
   end
 end
