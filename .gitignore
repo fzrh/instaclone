@@ -20,3 +20,6 @@
 
 # Ignore public/system/posts/images
 /public/system/posts/images
+
+# Ignore the rootkey file from S3
+/rootkey.csv
