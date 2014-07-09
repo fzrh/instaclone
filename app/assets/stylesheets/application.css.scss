@@ -15,3 +15,17 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  padding-top: 75px;
+}
+
+.panel-body {
+  img {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  p {
+    margin-top: 5px;
+  }
+}
