@@ -23,8 +23,9 @@
             <p><%= image_tag post.image.url(:thumb), class: 'uploaded-pic' %></p>
           <% end %> 
           <p><%= post.description %></p>
-          <div class="panel-footer">Posted by: <%= post.user.email %></div>
-        </div>
+          </div>
+          <div class="panel-footer"><p>Posted by: <%= post.user.email %></p></div>
+        
       </div>
    </div>
   <% end %>
