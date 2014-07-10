@@ -10,6 +10,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -22,6 +24,10 @@
         <a class="navbar-brand" href="#">Instagram</a>
       </div>
       <div class="navbar-collapse collapse">
+      <% if user_signed_in? %>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "btn btn-primary navbar-right") %>    
+        <%= link_to('Edit Details', edit_user_registration_path, class: "btn btn-primary navbar-right") %> 
+      <% else %>
         <%= form_for(User.new, as: :user, url: session_path(:user), html: { class: 'navbar-form navbar-right' }) do |f| %>
           <div class="form-group">
             <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
@@ -29,8 +35,9 @@
           <div class="form-group">
             <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
           </div>
-          <%= f.button "Sign in", class: 'btn btn-success' %>
+          <%= f.button "Sign in", class: 'btn btn-success' %>        
         <% end %>
+      <% end %>
       </div><!--/.navbar-collapse -->
     </div>
   </div>
