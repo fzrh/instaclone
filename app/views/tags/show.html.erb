@@ -1,5 +1,6 @@
 <h1>Posts associated with <%= @tag.name %></h1>
-<% @tag.posts.each do |post| %>
-  <p><%= post.title %></p>
-  <p><%= image_tag post.image.url(:thumb), class: 'uploaded-pic' %></p>
-<% end %>
+<div class='container'>
+  <div class='row'>
+    <%= render @tag.posts %>
+  </div>
+</div>

@@ -18,7 +18,7 @@
 @import "bootstrap-tagsinput";
 
 body {
-  padding-top: 75px;
+  padding-top: 50px;
 }
 
 .panel-body {
@@ -28,4 +28,8 @@ body {
   p {
     margin-top: 5px;
   }
+}
+
+.col-sm-4 {
+  padding-top: 10px;
 }
