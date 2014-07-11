@@ -11,9 +11,30 @@ RSpec.describe Post, :type => :model do
     end
 
     describe 'one tag that does not exist' do
-      it 'adds a tag to the post' do
+      it 'add a tag to the post' do
         post.tag_names = '#yolo'
         expect(post.tags.length).to eq 1
+      end
+    end
+
+    describe 'two tags that do not exist' do
+      it 'add tags to the post' do
+        post.tag_names = '#yolo, #swag'
+        expect(post.tags.length).to eq 2
+      end
+    end
+
+    describe 'tag already exists' do
+
+      let!(:existing_tag) { Tag.create name:'#yolo' }
+
+      it 'reuses the existing tag ' do
+        post.tag_names = '#yolo'
+        # raise post.tags.inspect
+        expect(post.tags).to include existing_tag
+        expect(Tag.count).to eq 1
+        # expect{ post.save! }.not_to raise_error 
+        # expect(post.save).to eq true
       end
     end
   end
