@@ -60,5 +60,16 @@ describe 'Creating posts' do
       expect(page).to have_content 'Errors'
     end
 
+    it 'can add an address to a post' do
+      visit '/posts/new'
+      fill_in 'Title', with: 'First post' 
+      attach_file 'Image', Rails.root.join('spec/images/bohey_dulang.jpg')
+      fill_in 'Address', with: '25 City Road, London'
+      click_button 'Post it!'
+      expect(current_path).to eq posts_path
+      expect(page).to have_content 'Posted by: alex@alex.com'
+      expect(page).to have_css 'img.uploaded-pic'      
+    end
+
   end
 end

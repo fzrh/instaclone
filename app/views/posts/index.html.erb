@@ -10,13 +10,14 @@
   </div>
 <% end %>
 <div class='container'>
-<% if @posts.any? %>
-<div class='row'>
-  <%= render @posts %>
-  </div>
+  <% if @posts.any? %>
+    <% @posts.in_groups_of(3, false).each do |post_triplet| %>
+      <div class='row'>
+        <%= render post_triplet %>
+      </div>
+    <% end %>
   <% else %>
-  <h1>No posts yet</h1>
-<% end %>
-
+    <h1>No posts yet</h1>
+  <% end %>
 <%= link_to 'New post', new_post_path, class: 'btn btn-info btn-primary' %>
 </div>

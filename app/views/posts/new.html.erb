@@ -1,33 +1,39 @@
-<% if @post.errors.any? %>
-  <div id='error-list'>
-  <h2>Errors</h2>
-  <ul>
-  <% @post.errors.full_messages.each do |error| %>
-  <li> <%= error %> </li>
-<% end %>
-</ul>
-  </div>
-<% end %>
+<div class='container'>
+  <% if @post.errors.any? %>
+    <div id='error-list'>
+    <h2>Errors</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |error| %>
+    <li> <%= error %> </li>
+  <% end %>
+  </ul>
+    </div>
+  <% end %>
 
-<h1>Create a post</h1>
+  <h1>Create a post</h1>
 
-<%= form_for @post, html: { multipart: true } do |form| %>
-<p>
-<%= form.label :title %>
-<%= form.text_field :title %>
-</p>
-<p> 
-<%= form.label :description %>
-<%= form.text_field :description %>
-</p>
-<p> 
-<%= form.label :tag_names, 'Tags' %>
-<%= form.text_field :tag_names, data: {role: 'tagsinput'} %>
-</p>
-<p>
-<%= form.label :image %>
-<%= form.file_field :image %>
-</p>
+  <%= form_for @post, html: { multipart: true } do |form| %>
+  <p>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  </p>
+  <p> 
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+  </p>
+  <p> 
+  <%= form.label :address %>
+  <%= form.text_field :address %>
+  </p>
+  <p> 
+  <%= form.label :tag_names, 'Tags' %>
+  <%= form.text_field :tag_names, data: {role: 'tagsinput'} %>
+  </p>
+  <p>
+  <%= form.label :image %>
+  <%= form.file_field :image %>
+  </p>
 
-<%= form.submit 'Post it!' %>
-<% end %>
+  <%= form.submit 'Post it!' %>
+  <% end %>
+</div>
