@@ -68,7 +68,7 @@ describe 'Creating posts' do
       click_button 'Post it!'
       expect(current_path).to eq posts_path
       expect(page).to have_content 'Posted by: alex@alex.com'
-      expect(page).to have_css 'img.uploaded-pic'      
+      expect(page).to have_css 'img.uploaded-pic'
     end
 
   end
