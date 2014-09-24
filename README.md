@@ -8,3 +8,7 @@ We are creating an Instagram clone with some the from paperclip, a gem that make
 + Ruby on Rails
 + Capybara
 + RSpec
+
+#### Heroku
+
+http://instagram-clone.herokuapp.com/
