@@ -1,3 +1,5 @@
+[ ![Codeship Status for frism/instagram](https://codeship.com/projects/819b7190-5e53-0132-feca-5a8b1698743a/status)](https://codeship.com/projects/51319)
+
 Instagram
 ==========
 This is a week 9 project whilst learning to code at Makers Academy.
